@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Users list{% endblock %}
+
+{% block content %}
+
+	{% if current_user %}
+		Welcome, {{ current_user.login }}<br>
+		<a href="{% url 'logout' %}">Log Out</a><br>
+	{% else %}
+		<a href="{% url 'login' %}">Log In</a> / <a href="{% url 'register' %}">Register</a><br>
+	{% endif %}
+
+	All users:<br>
+	<ul id="chat">
+		{% for user in users %}
+			<li>{{ user.login }}</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

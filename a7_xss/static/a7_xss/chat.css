@@ -1,0 +1,9 @@
+.connected {
+	color: goldenrod;
+}
+.error {
+	color: red;
+}
+.username {
+	font-weight: bold;
+}

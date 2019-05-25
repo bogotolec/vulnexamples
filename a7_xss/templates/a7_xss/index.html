@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Chat{% endblock %}
+
+{% block inside_head %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'a7_xss/chat.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+	{% if request.user.is_authenticated %}
+		Welcome, {{ request.user.login }}<br>
+		<a href="{% url 'logout' %}">Log Out</a><br>
+
+		<form id="chatform" autocomplete="off">
+			<input type="text" placeholder="Message" required id="message">
+			<button type="submit" id="go">Submit</button>
+		</form>
+	{% else %}
+		<a href="{% url 'login' %}">Log In</a> or <a href="{% url 'register' %}">Register</a> to send messages
+	{% endif %}
+
+	<ul id="chat"></ul>
+	<script type="text/javascript" src='{% static "a7_xss/chat.js" %}'></script>
+
+{% endblock %}

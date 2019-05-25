@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Profile of {{ request.GET.username }}{% endblock %}
+
+{% block content %}
+
+	<p>Profile of {{ request.GET.username }}</p>
+	{% if not info.birthdate_hidden or request.GET.username == request.user.login %}
+		<p>Birthdate: {{ info.birthdate }}</p>
+	{% endif %}
+	{% if info.birthdate_hidden %}
+		<p>Birthdate is hidden</p>
+	{% endif %}
+	{% if info.bio %}
+		<p>Bio: {{ info.bio }}</p>
+	{% endif %}
+
+
+{% endblock %}
