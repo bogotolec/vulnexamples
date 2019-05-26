@@ -22,6 +22,11 @@ def index(request):
 class RegistrationView(HostsRegistrationView):
     subdomain = 'a2_broken_auth'
 
+    def validate(self, request):
+        super().validate(request)
+        if len(self.form.cleaned_data['username']) > 20:
+            self.form.errors['username'] += ['Username should be 20 symbols or less']
+
     def on_success(self, request):
         user = get_user_model().objects.create_user(
             username=self.form.cleaned_data['username'],

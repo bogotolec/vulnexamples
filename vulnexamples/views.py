@@ -108,7 +108,7 @@ class HostsLoginView(MyFormView):
             subdomain=self.subdomain
         )
         if (self.user is None):
-            self.form.errors['username'] = self.form.errors.get('username', []) + ['Username or/and password is incorrect.']
+            self.form.errors['username'] = self.form.errors.get('username', []) + ['Username or/and password is/are incorrect.']
 
     def on_success(self, request):
             login(request, self.user)

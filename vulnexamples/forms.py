@@ -5,5 +5,5 @@ from django.contrib.auth import authenticate
 
 
 class AuthenticationForm(Form):
-    username = forms.CharField(max_length=70)
+    username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)

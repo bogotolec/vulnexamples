@@ -30,6 +30,9 @@ class RegistrationView(HostsRegistrationView):
         if get_user_model().objects.filter(login=new_username, subdomain=self.subdomain).exists():
             self.form.errors['username'] += ['Current user is already registered.']
 
+        if len(new_username) > 70:
+            self.form.errors['username'] += ['Username should be 70 symbols or less']
+
         if len(new_password) < 6:
             self.form.errors['password'] += ['Password must contain at least 6 symbols.']
 
