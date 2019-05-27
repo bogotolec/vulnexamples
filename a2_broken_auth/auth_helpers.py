@@ -1,9 +1,9 @@
 from django.shortcuts import redirect
-from base64 import b32encode as encode
+from base64 import b32encode
 
 
 def get_session_id(username):
-    return encode((username * 20)[:20].encode()).decode().lower()
+    return b32encode(((username+' ') * 20)[:20].encode()).decode().lower()
 
 
 def change_login(login):
