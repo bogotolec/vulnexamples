@@ -45,5 +45,4 @@ def profile_view(request):
     )
     if (len(info) == 0):
         return HttpResponseNotFound("No such user")
-    info = info[0]
-    return render(request, 'a1_injection/profile.html', {'info': info})
+    return render(request, 'a1_injection/profile.html', {'info': info[0]})
