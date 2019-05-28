@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Minesweeper{% endblock %}
+
+{% block inside_head %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'a4_xxe/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <table id="map"></table>
+    <style>
+        body {
+            --size: calc(90vmin / {{size}});
+        }
+    </style>
+    <script type="text/javascript">
+        const n = {{ size }};
+        var mines_count = {{ mines }};
+    </script>
+    <script type="text/javascript" src='{% static "a4_xxe/minesweeper.js" %}'></script>
+
+
+    Upload settings:<br>
+    {% include 'form.html' with buttontext='Upload settings' %}
+    <hr>
+	<a href="">Download settings</a>
+    <hr>
+    Size: {{ size }}x{{ size }}<br>
+    Mines: {{ mines }}<br>
+
+{% endblock %}

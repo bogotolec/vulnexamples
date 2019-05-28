@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'index',
     'a1_injection',
     'a2_broken_auth',
+    'a4_xxe',
     'a7_xss',
     'channels',
     'django_hosts',
@@ -165,3 +166,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+MEDIA_URL = '/media/'

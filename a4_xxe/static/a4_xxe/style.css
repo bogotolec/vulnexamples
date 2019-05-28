@@ -1,0 +1,29 @@
+table#map {
+    text-align: center;
+    vertical-align: center;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px dimgray solid ;
+    float: left;
+}
+
+#map td {
+    padding: 0;
+    width: var(--size);
+    height: var(--size);
+}
+
+#map td.unknown {
+    border: 1px dimgray solid;
+    background-color: white;
+}
+
+#map td.BOOM {
+    border: 1px gray solid;
+    background-color: red;
+}
+
+#map td.opened {
+    border: 1px white solid;
+    background-color: lightgray;
+}

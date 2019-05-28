@@ -30,13 +30,14 @@ class MyFormView(View):
         return
 
     def get(self, request):
-        return self.render_form(request, self.form_class())
+        self.form = self.form_class()
+        return self.render_form(request)
 
     def post(self, request):
-        self.form = self.form_class(request.POST)
+        self.form = self.form_class(request.POST, request.FILES)
 
         if not self.form.is_valid():
-            return self.render_form(request, self.form)
+            return self.render_form(request)
 
         self.validate(request)
 
@@ -46,12 +47,12 @@ class MyFormView(View):
                 err = True
                 break
         if err:
-            return self.render_form(request, self.form)
+            return self.render_form(request)
 
         return self.on_success(request)
 
-    def render_form(self, request, form):
-        return render(request, self.template_name, {'form': form})
+    def render_form(self, request):
+        return render(request, self.template_name, {'form': self.form})
 
 
 class HostsRegistrationView(MyFormView):
