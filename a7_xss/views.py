@@ -8,8 +8,8 @@ from vulnexamples.views import HostsLoginView, HostsRegistrationView
 
 
 def index(request):
-    #messages = reversed(ChatMessage.objects.order_by("-created")[:10])
-    #return render(request, 'a7_xss/index.html', {'messages': messages})
+    # messages = reversed(ChatMessage.objects.order_by("-created")[:10])
+    # return render(request, 'a7_xss/index.html', {'messages': messages})
     return render(request, 'a7_xss/index.html')
 
 
@@ -24,8 +24,8 @@ class RegistrationView(HostsRegistrationView):
         self.form.errors['password'] = self.form.errors.get('password', [])
 
         if not re.match(r'[A-Za-z0-9_\-]+', new_username):
-            self.form.errors['username'] += ['Incorrect username. Username can contain only english letters, digits, '
-                                            '"_" and "-" symbols.']
+            self.form.errors['username'] += ['Incorrect username. Username can contain only'
+                                             ' english letters, digits, "_" and "-" symbols.']
 
         if get_user_model().objects.filter(login=new_username, subdomain=self.subdomain).exists():
             self.form.errors['username'] += ['Current user is already registered.']

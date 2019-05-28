@@ -135,7 +135,7 @@ AUTH_PROFILE_MODULE = 'vulnexamples.HostsAuthUser'
 
 AUTHENTICATION_BACKENDS = (
     'vulnexamples.backends.HostsAuthBackend',
-    #'django.contrib.auth.backends.ModelBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
 )
 
 # Internationalization
