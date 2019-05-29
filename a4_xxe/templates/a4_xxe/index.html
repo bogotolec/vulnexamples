@@ -22,15 +22,15 @@
         const n = {{ size }};
         var mines_count = {{ mines }};
     </script>
-    <script type="text/javascript" src='{% static "a4_xxe/minesweeper.js" %}'></script>
+    <script type="text/javascript" src="{% static 'a4_xxe/minesweeper.js' %}"></script>
 
 
     Upload settings:<br>
     {% include 'form.html' with buttontext='Upload settings' %}
     <hr>
-	<a href="">Download settings</a>
+	<a href="{% url 'settings' %}?size={{size}}&mines={{mines}}" download>Download current settings</a>
     <hr>
     Size: {{ size }}x{{ size }}<br>
-    Mines: {{ mines }}<br>
+    Mines: {{ mines | linebreaksbr }}<br>
 
 {% endblock %}

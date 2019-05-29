@@ -3,7 +3,7 @@ table#map {
     vertical-align: center;
     border-collapse: separate;
     border-spacing: 0;
-    border: 1px dimgray solid ;
+    border: 1px dimgray solid;
     float: left;
 }
 
