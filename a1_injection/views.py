@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django_hosts.resolvers import reverse
-from django.http import HttpResponseNotFound
+from django.http import Http404
 
 from vulnexamples.views import HostsLoginView, HostsRegistrationView
 from .forms import RegistrationForm
@@ -48,5 +48,5 @@ def profile_view(request):
         """ % username
     )
     if (len(info) == 0):
-        return HttpResponseNotFound("No such user")
+        raise Http404("No such user")
     return render(request, 'a1_injection/profile.html', {'info': info[0]})

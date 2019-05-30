@@ -1,12 +1,15 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django_hosts.resolvers import reverse
 from django.views.generic import View
 from django.contrib.auth import get_user_model
 import abc
 import re
 
 from .forms import AuthenticationForm
+
+
+def view404(request, exception):
+    return render(request, '404.html')
 
 
 class MyFormView(View):

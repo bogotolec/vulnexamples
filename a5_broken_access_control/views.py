@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django_hosts.resolvers import reverse
-from django.http import HttpResponseNotFound
+from django.http import Http404
 
 
 from vulnexamples.views import HostsLoginView, HostsRegistrationView, MyFormView
@@ -48,5 +48,5 @@ def note_view(request):
     try:
         note = Note.objects.get(id=request.GET.get('id'))
     except (Note.DoesNotExist, ValueError):
-        return HttpResponseNotFound("No such note")
+        raise Http404("No such note")
     return render(request, 'a5_broken_access_control/note.html', {'note': note})
