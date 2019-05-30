@@ -39,7 +39,7 @@ def logout_view(request):
 
 
 def profile_view(request):
-    username = request.GET['username']
+    username = request.GET.get('username')
 
     info = AdditionalInfo.objects.using('a1_injection').raw(
         """SELECT id, birthdate, birthdate_hidden, bio
