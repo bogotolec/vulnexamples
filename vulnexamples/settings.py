@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'a1_injection',
     'a2_broken_auth',
     'a4_xxe',
+    'a5_broken_access_control',
     'a7_xss',
     'channels',
     'django_hosts',
@@ -104,12 +105,17 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'a1_injection', 'db.sqlite3'),
     },
+    'a5_broken_access_control': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'a5_broken_access_control', 'db.sqlite3'),
+    },
 }
 
 DATABASE_ROUTERS = ['vulnexamples.routers.DatabaseAppsRouter']
 
 DATABASE_APPS_MAPPING = {
     'a1_injection': 'a1_injection',
+    'a5_broken_access_control': 'a5_broken_access_control',
 }
 
 

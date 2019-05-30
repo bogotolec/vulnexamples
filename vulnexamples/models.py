@@ -6,5 +6,5 @@ from .managers import HostsAuthManager
 
 class HostsAuthUser(AbstractUser):
     subdomain = models.TextField(max_length=500, blank=True)
-    login = models.TextField(max_length=500, blank=True)
+    login = models.TextField(max_length=100, blank=True)
     objects = HostsAuthManager()

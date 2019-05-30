@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django_hosts.resolvers import reverse
 from django.views.generic import View
 from django.contrib.auth import get_user_model
 import abc
@@ -9,6 +10,8 @@ from .forms import AuthenticationForm
 
 
 class MyFormView(View):
+    auth_needed = False
+
     @abc.abstractproperty
     def subdomain(self):
         return
@@ -30,10 +33,16 @@ class MyFormView(View):
         return
 
     def get(self, request):
+        if self.auth_needed and not request.user.is_authenticated:
+            return redirect(reverse('login', host=self.subdomain))
+
         self.form = self.form_class()
         return self.render_form(request)
 
     def post(self, request):
+        if self.auth_needed and not request.user.is_authenticated:
+            return redirect(reverse('login', host=self.subdomain))
+
         self.form = self.form_class(request.POST, request.FILES)
 
         if not self.form.is_valid():

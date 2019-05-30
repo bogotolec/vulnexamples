@@ -12,8 +12,8 @@ def index(request):
         if (request.COOKIES.get('session_id') != get_session_id(username)):
             current_user = None
         else:
-            current_user = get_user_model().objects.filter(login=username,
-                                                           subdomain='a2_broken_auth')[0]
+            current_user = get_user_model().objects.get(login=username,
+                                                        subdomain='a2_broken_auth')
     except (KeyError, IndexError, TypeError, AttributeError):
         current_user = None
 
