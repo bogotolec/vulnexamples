@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Chat{% endblock %}
+
+{% block inside_head %}
+{% endblock %}
+
+{% block content %}
+
+	{% if request.user.is_authenticated %}
+		Welcome, {{ request.user.login }}<br>
+		<a href="{% url 'logout' %}">Log Out</a><br>
+
+		<a href="{% url 'shop' %}">SHOP</a>
+	{% else %}
+		<a href="{% url 'login' %}">Log In</a> or <a href="{% url 'register' %}">Register</a> to get access to shop.
+	{% endif %}
+
+{% endblock %}

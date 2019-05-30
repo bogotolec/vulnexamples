@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'a1_injection',
     'a2_broken_auth',
     'a7_xss',
+    'a8_insecure_deserialization',
     'channels',
     'django_hosts',
     'django.contrib.admin',
