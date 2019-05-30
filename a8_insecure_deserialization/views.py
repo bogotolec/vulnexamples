@@ -89,13 +89,13 @@ class Cart:
         c = Cipher()
 
         self.price = c.decode(cookie[:32])
-        if self.price == None:
+        if self.price is None:
             return None
 
         for i in range(len(cookie) // 32 - 1):
-            id = c.decode(cookie[32 * (i + 1): 32*(i+2)])
+            id = c.decode(cookie[32 * (i + 1): 32 * (i + 2)])
 
-            if id == None:
+            if id is None:
                 return None
             self.items[id - 1] += 1
 
@@ -107,13 +107,13 @@ class Cart:
         res = []
         for i in range(len(self.items)):
             if self.items[i] != 0:
-                
                 t = {
                     'name': item_list[i]['name'],
                     'count': self.items[i],
                 }
                 res.append(t)
         return res
+
 
 class ShopView(View):
     template_name = "a8_insecure_deserialization/shop.html"
@@ -133,7 +133,7 @@ class ShopView(View):
             id = form.cleaned_data['id']
 
             response = render(request, self.template_name, {"items": item_list})
-            response.set_cookie('cart', add_item(request.COOKIES.get('cart'), id))
+            response.set_cookie('cart', add_item(request.COOKIES.get('cart' ''), id))
 
             return response
         else:
@@ -145,11 +145,12 @@ class CartView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            
-            cart = Cart(request.COOKIES.get('cart'))
-            
-            if cart != None:
-                response = render(request, self.template_name, {"items": cart.to_string(), "cost": cart.cost()})
+
+            cart = Cart(request.COOKIES.get('cart', ''))
+
+            if cart is not None:
+                response = render(request, self.template_name, {'items': cart.to_string(),
+                                                                'cost': cart.cost()})
             else:
                 response = render(request, self.template_name)
                 response.set_cookie("cart", "")
@@ -173,11 +174,11 @@ def logout_view(request):
 
 
 def buy(request):
-    cart = Cart(request.COOKIES.get('cart'))
+    cart = Cart(request.COOKIES.get('cart', ''))
 
-    args = { 'message': [] }
+    args = {'message': []}
 
-    if cart == None:
+    if cart is None:
         args['message'].append('unexpected error')
         response = render(request, "a8_insecure_deserialization/buy.html", args)
         response.set_cookie("cart", "")

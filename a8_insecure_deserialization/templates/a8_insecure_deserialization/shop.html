@@ -12,6 +12,7 @@
         <a href="{% url 'logout' %}">Logout</a>
         <a class="active">Shop</a>
         <a href="{% url 'cart' %}">Cart</a>
+        <span>Balance: {{ request.user.balance }}</span>
     </div>
 {% endblock %}
 
