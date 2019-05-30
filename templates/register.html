@@ -1,9 +1,8 @@
-{% extends 'form.html' %}
-{% load hosts %}
+{% extends 'base.html' %}
 
 
 {% block title %}Registration{% endblock %}
 
-{% block action %}{% url 'register' %}{% endblock %}
-
-{% block buttontext %}Register{% endblock %}
+{% block content %}
+    {% include 'form.html' with buttontext='Register' %}
+{% endblock %}

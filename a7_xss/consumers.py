@@ -48,7 +48,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                          ' times in a row.'
             }))
 
-
     async def chat_message(self, event):
         await self.send(text_data=json.dumps({
             'type': 'message',

@@ -12,11 +12,13 @@ def index(request):
         if (request.COOKIES.get('session_id') != get_session_id(username)):
             current_user = None
         else:
-            current_user = get_user_model().objects.filter(login=username, subdomain='a2_broken_auth')[0]
+            current_user = get_user_model().objects.filter(login=username,
+                                                           subdomain='a2_broken_auth')[0]
     except (KeyError, IndexError, TypeError, AttributeError):
         current_user = None
 
-    return render(request, 'a2_broken_auth/index.html', {'current_user': current_user, 'users': users})
+    return render(request, 'a2_broken_auth/index.html',
+                  {'current_user': current_user, 'users': users})
 
 
 class RegistrationView(HostsRegistrationView):

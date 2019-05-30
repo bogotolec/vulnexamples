@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'index',
     'a1_injection',
     'a2_broken_auth',
+    'a4_xxe',
     'a7_xss',
     'a8_insecure_deserialization',
     'channels',
@@ -136,7 +137,7 @@ AUTH_PROFILE_MODULE = 'vulnexamples.HostsAuthUser'
 
 AUTHENTICATION_BACKENDS = (
     'vulnexamples.backends.HostsAuthBackend',
-    #'django.contrib.auth.backends.ModelBackend',
+    # 'django.contrib.auth.backends.ModelBackend',
 )
 
 # Internationalization
@@ -166,3 +167,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+MEDIA_URL = '/media/'

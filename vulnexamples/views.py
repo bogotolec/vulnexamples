@@ -1,12 +1,9 @@
-from django.views.generic.edit import FormView
-from django.views.generic.base import View
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth import get_user_model
 import abc
 import re
-from django_hosts.resolvers import reverse_lazy, reverse
 
 from .forms import AuthenticationForm
 
@@ -33,13 +30,14 @@ class MyFormView(View):
         return
 
     def get(self, request):
-        return self.render_form(request, self.form_class())
+        self.form = self.form_class()
+        return self.render_form(request)
 
     def post(self, request):
-        self.form = self.form_class(request.POST)
+        self.form = self.form_class(request.POST, request.FILES)
 
         if not self.form.is_valid():
-            return self.render_form(request, self.form)
+            return self.render_form(request)
 
         self.validate(request)
 
@@ -49,12 +47,12 @@ class MyFormView(View):
                 err = True
                 break
         if err:
-            return self.render_form(request, self.form)
+            return self.render_form(request)
 
         return self.on_success(request)
 
-    def render_form(self, request, form):
-        return render(request, self.template_name, {'form': form})
+    def render_form(self, request):
+        return render(request, self.template_name, {'form': self.form})
 
 
 class HostsRegistrationView(MyFormView):
@@ -69,8 +67,8 @@ class HostsRegistrationView(MyFormView):
         self.form.errors['password'] = self.form.errors.get('password', [])
 
         if not re.match(r'^[A-Za-z0-9_\-]+$', new_username):
-            self.form.errors['username'] += ['Incorrect username. Username can contain only english letters, digits, '
-                                            '"_" and "-" symbols.']
+            self.form.errors['username'] += ['Incorrect username. Username can contain only'
+                                             'english letters, digits, "_" and "-" symbols.']
 
         if get_user_model().objects.filter(login=new_username, subdomain=self.subdomain).exists():
             self.form.errors['username'] += ['Current user is already registered.']
@@ -107,8 +105,9 @@ class HostsLoginView(MyFormView):
             password=self.form.cleaned_data['password'],
             subdomain=self.subdomain
         )
+        self.form.errors['username'] = self.form.errors.get('username', [])
         if (self.user is None):
-            self.form.errors['username'] = self.form.errors.get('username', []) + ['Username or/and password is/are incorrect.']
+            self.form.errors['username'] += ['Username or/and password is/are incorrect.']
 
     def on_success(self, request):
             login(request, self.user)

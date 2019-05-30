@@ -10,7 +10,8 @@ from .models import AdditionalInfo
 
 
 def index(request):
-    return render(request, 'a1_injection/index.html', {'users': get_user_model().objects.filter(subdomain='a1_injection')})
+    return render(request, 'a1_injection/index.html',
+                  {'users': get_user_model().objects.filter(subdomain='a1_injection')})
 
 
 class RegistrationView(HostsRegistrationView):
@@ -41,7 +42,10 @@ def profile_view(request):
     username = request.GET['username']
 
     info = AdditionalInfo.objects.using('a1_injection').raw(
-        "SELECT id, birthdate, birthdate_hidden, bio FROM 'a1_injection_additionalinfo' WHERE login='%s'" % username
+        """SELECT id, birthdate, birthdate_hidden, bio
+           FROM 'a1_injection_additionalinfo'
+           WHERE login='%s'
+        """ % username
     )
     if (len(info) == 0):
         return HttpResponseNotFound("No such user")
