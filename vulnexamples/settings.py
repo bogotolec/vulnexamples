@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'a4_xxe',
     'a5_broken_access_control',
     'a7_xss',
+    'a8_insecure_deserialization',
     'channels',
     'django_hosts',
     'django.contrib.admin',
