@@ -34,14 +34,14 @@ class MyFormView(View):
 
     def get(self, request):
         if self.auth_needed and not request.user.is_authenticated:
-            return redirect(reverse('login', host=self.subdomain))
+            return redirect('login')
 
         self.form = self.form_class()
         return self.render_form(request)
 
     def post(self, request):
         if self.auth_needed and not request.user.is_authenticated:
-            return redirect(reverse('login', host=self.subdomain))
+            return redirect('login')
 
         self.form = self.form_class(request.POST, request.FILES)
 
