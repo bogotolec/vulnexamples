@@ -4,11 +4,7 @@ from django.shortcuts import render
 
 from vulnexamples.views import MyFormView
 from vulnexamples.forms import FileUploadForm
-from .resolvers import OnlyOneURLResolver
-
-
-DEFAULT_SIZE = 20
-DEFAULT_MINES = 50
+from .config import OnlyOneURLResolver, DEFAULT_SIZE, DEFAULT_MINES
 
 
 class IndexView(MyFormView):
@@ -38,7 +34,6 @@ class IndexView(MyFormView):
 
 
 def settings(request):
-
     return render(request, 'a4_xxe/settings.xml',
                   {'size': request.GET.get('size', DEFAULT_SIZE),
                    'mines': request.GET.get('mines', DEFAULT_MINES)},

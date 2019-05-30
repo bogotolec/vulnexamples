@@ -1,6 +1,10 @@
 from lxml.etree import Resolver, ParseError
 
 
+DEFAULT_SIZE = 20
+DEFAULT_MINES = 50
+
+
 class OnlyOneURLResolver(Resolver):
     AVAILABLE_URL = 'file:///TODO.txt'
     SECRET = '\nTODO: fix XXE\nTODO: some-secret-data'
