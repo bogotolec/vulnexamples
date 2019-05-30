@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
-    <size>{{ request.GET.size }}</size>
-    <mines>{{ request.GET.mines }}</mines>
+    <size>{{ size }}</size>
+    <mines>{{ mines }}</mines>
 </settings>
