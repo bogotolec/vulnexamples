@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd@33nlnf9h@*a#pcont%ow^%6r%3k^*q=id(v3z#syvt!36)m2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.localhost']
 
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'a2_broken_auth',
     'a4_xxe',
     'a5_broken_access_control',
+    'a6_security_misconfiguration',
     'a7_xss',
     'a8_insecure_deserialization',
     'channels',
