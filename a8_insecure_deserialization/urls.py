@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'a8_insecure_deserialization'
 
 urlpatterns = [

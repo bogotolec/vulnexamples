@@ -8,10 +8,6 @@ import re
 from .forms import AuthenticationForm
 
 
-def view404(request, exception):
-    return render(request, '404.html')
-
-
 class MyFormView(View):
     auth_needed = False
 

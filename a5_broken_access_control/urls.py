@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+
 app_name = 'a5_broken_access_control'
 
 urlpatterns = [

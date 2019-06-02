@@ -2,7 +2,8 @@ from django.urls import path
 
 from . import views
 
-app_name = 'a1_injection'
+
+app_name = 'a2_broken_auth'
 
 urlpatterns = [
     path('', views.index, name='index'),
