@@ -18,14 +18,20 @@
 
 {% block content %}
 
-    {{ cost }}
+    {% if items %}
+        Total price: {{ cost }}
+    {% else %}
+        Your cart is empty now.
+    {% endif %}
 
 	{% for i in items %}
         <ul>
-            <li>{{ i.name }}:{{ i.count }}</li>
+            <li>{{ i.name }}: {{ i.count }}</li>
         </ul>
     {% endfor %}
 
-    <a href="{% url 'buy' %}">Buy</a>
+    {% if items %}
+        <a href="{% url 'buy' %}">Buy</a>
+    {% endif %}
 
 {% endblock %}
