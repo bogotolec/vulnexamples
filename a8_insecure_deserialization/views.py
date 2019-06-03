@@ -35,9 +35,37 @@ item_list = [
     {
         "id": 4,
         "name": "baguette",
-        "description": "délicieuse",
+        "description": "Délicieuse",
         "image": "images/baguette.png",
         "price": 5,
+    },
+    {
+        "id": 5,
+        "name": "pita bread",
+        "description": "Flat like an Earth",
+        "image": "images/pita_bread.jpg",
+        "price": 4,
+    },
+    {
+        "id": 6,
+        "name": "bread crumbs",
+        "description": "For the best chicken wings",
+        "image": "images/bread_crumbs.jpg",
+        "price": 2,
+    },
+    {
+        "id": 7,
+        "name": "black break",
+        "description": "...",
+        "image": "images/black_bread.jpg",
+        "price": 6,
+    },
+    {
+        "id": 8,
+        "name": "sesame bun",
+        "description": "Best choice for hamburgers",
+        "image": "images/sesame_bun.jpg",
+        "price": 4,
     },
 ]
 
