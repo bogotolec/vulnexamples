@@ -27,3 +27,7 @@ table#map {
     border: 1px white solid;
     background-color: lightgray;
 }
+
+#map td.marked::before {
+    content: "?";
+}

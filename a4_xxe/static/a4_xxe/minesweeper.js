@@ -123,12 +123,31 @@ function tap(e) {
     }
 }
 
+function mark(e) {
+    e.preventDefault(); 
+    if (state != "game" || !generated)
+        return false;
+
+    if (this.classList.contains("unknown")) {
+        list = this.classList;
+        if (list.contains("marked")) {
+            this.classList.remove('marked')
+        }
+        else {
+            this.classList.add('marked')
+        }
+    }
+
+    return false;
+}
+
 for (var i = 0; i < n; ++i){
     var row = document.createElement("tr");
     
     for (var j = 0; j < n; ++j){
         var cell = document.createElement("td");
         cell.onclick = tap;
+        cell.addEventListener('contextmenu', mark, false);
         
         cell.setAttribute("data-x", i);
         cell.setAttribute("data-y", j);
