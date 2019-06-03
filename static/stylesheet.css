@@ -37,5 +37,18 @@ img {
 }
 
 main {
-    padding: 10px;
+    padding: 20px;
+}
+
+.content {
+    border: 2px solid black;
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+ul {
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-left: -50px;
 }
