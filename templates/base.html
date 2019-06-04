@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load hosts %}
 
 <html>
 	<head>
@@ -14,5 +15,10 @@
 			    {% block content %}{% endblock %}
 		    </div>
         </main>
+        {% if not hide_footer %}
+            <footer>
+                <a href="{% host_url 'index' host 'default' %}">Back to main page</a>
+            </footer>
+        {% endif %}
 	</body>
 </html>

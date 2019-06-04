@@ -37,18 +37,27 @@ img {
 }
 
 main {
-    padding: 20px;
+    padding: 10px;
 }
 
 .content {
     border: 2px solid black;
-    width: 600px;
+    width: 60vw;
     margin: 0 auto;
+    padding: 10px;
     text-align: center;
 }
 
-ul {
-    list-style-type: decimal;
+ul, ol {
+    list-style: none;
     list-style-position: inside;
-    margin-left: -50px;
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    display: block;
+    text-align: right;
+    padding: 10px;
+    clear: both;
 }

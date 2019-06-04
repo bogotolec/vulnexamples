@@ -7,3 +7,9 @@
 .username {
 	font-weight: bold;
 }
+#chat {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    word-break: break-all;
+}

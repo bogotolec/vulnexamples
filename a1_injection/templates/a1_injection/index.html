@@ -12,8 +12,8 @@
 	{% else %}
 		<a href="{% url 'login' %}">Log In</a> / <a href="{% url 'register' %}">Register</a>
 	{% endif %}
-
-	<ul id="chat">
+	List of users:
+	<ul>
 		{% for user in users %}
 			<li><a href="{% url 'profile' %}?username={{ user.login }}">{{ user.login }}</a><br></li>
 		{% endfor %}

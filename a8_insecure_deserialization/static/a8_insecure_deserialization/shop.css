@@ -44,3 +44,8 @@ p {
     background-color: #4CAF50;
     color: white;
 }
+
+.content {
+    width: calc(100vw - 70px);
+    border: none;
+}

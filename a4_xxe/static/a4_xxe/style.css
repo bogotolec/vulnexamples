@@ -31,3 +31,9 @@ table#map {
 #map td.marked::before {
     content: "?";
 }
+
+.content {
+    width: calc(100vw - 70px);
+    border: none;
+    text-align: left;
+}

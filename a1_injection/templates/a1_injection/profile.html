@@ -8,16 +8,16 @@
 	<p>Profile of {{ request.GET.username }}</p>
 	{% if not info.birthdate_hidden or request.GET.username == request.user.login %}
 		<p>Birthdate: {{ info.birthdate }}
-        {% if request.GET.username == request.user.login and info.birthdate_hidden %}
+        {% if info.birthdate_hidden %}
             <i class="note">this is hidden information</i>
         {% endif %}
         </p>
 	{% endif %}
-	{% if info.birthdate_hidden %}
+	{% if info.birthdate_hidden and request.GET.username != request.user.login %}
 		<p class="warning">Birthdate is hidden</p>
 	{% endif %}
-<hr/>
 	{% if info.bio %}
-		<p>Bio: <br>{{ info.bio | linebreaksbr }}</p>
+        <hr>
+		<p>Bio:<br>{{ info.bio | linebreaksbr }}</p>
 	{% endif %}
 {% endblock %}

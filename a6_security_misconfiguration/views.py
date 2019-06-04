@@ -20,7 +20,7 @@ class IndexView(MyFormView):
 
     def render_form(self, request):
         return render(request, self.template_name, {'form': self.form,
-                                                    'result': getattr(self, 'result', None)})
+                                                    'result': getattr(self, 'result', '')})
 
 
 def view404(request, exception):
