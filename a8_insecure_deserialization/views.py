@@ -2,8 +2,6 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django_hosts.resolvers import reverse
 from django.views.generic import View
-from django.contrib.auth import get_user_model
-import re
 import hashlib
 
 
@@ -69,6 +67,7 @@ item_list = [
     },
 ]
 
+
 class Cipher:
 
     salt = b"a i b sideli na trube"
@@ -83,19 +82,18 @@ class Cipher:
         else:
             return None
 
+
 def add_item(cookie, id):
-    
     price = 0
-    items = []
     block_size = 32
 
     c = Cipher()
 
-    if cookie != None and cookie != "":
+    if cookie is not None and cookie != "":
         price = c.decode(cookie[:block_size])
     else:
         cookie = ""
-    if price == None:
+    if price is None:
         cookie = ""
     price += int(item_list[id - 1]['price'])
     cookie = c.encode(price) + cookie[32::]
@@ -130,8 +128,7 @@ class Cart:
     def cost(self):
         return self.price
 
-
-    def to_string(self):
+    def to_array(self):
         res = []
         for i in range(len(self.items)):
             if self.items[i] != 0:
@@ -177,7 +174,7 @@ class CartView(View):
             cart = Cart(request.COOKIES.get('cart', ''))
 
             if cart is not None:
-                response = render(request, self.template_name, {'items': cart.to_string(),
+                response = render(request, self.template_name, {'items': cart.to_array(),
                                                                 'cost': cart.cost()})
             else:
                 response = render(request, self.template_name)
@@ -211,7 +208,7 @@ def buy(request):
         response = render(request, "a8_insecure_deserialization/buy.html", args)
         response.set_cookie("cart", "")
         return response
-    elif len(cart.to_string()) == 0:
+    elif len(cart.to_array()) == 0:
         args['message'].append("Cart is empty")
 
     elif cart.cost() > request.user.balance:

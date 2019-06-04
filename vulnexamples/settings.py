@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd@33nlnf9h@*a#pcont%ow^%6r%3k^*q=id(v3z#syvt!36)m2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.localhost']
 
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'index',
     'a1_injection',
     'a2_broken_auth',
+    'a3_sensitive_data_exposure',
     'a4_xxe',
     'a5_broken_access_control',
     'a6_security_misconfiguration',
@@ -67,13 +68,17 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
@@ -179,3 +184,26 @@ STATICFILES_FINDERS = (
 )
 
 MEDIA_URL = '/media/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR,
+                                     'a3_sensitive_data_exposure',
+                                     'templates',
+                                     'a3_sensitive_data_exposure',
+                                     'logs.txt'),
+        },
+    },
+    'loggers': {
+        'a3_sensitive_data_exposure': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

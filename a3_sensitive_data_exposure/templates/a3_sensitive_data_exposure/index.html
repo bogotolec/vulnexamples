@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Hello, World!{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        Welcome, {{ request.user.login }}<br>
+        <a href="{% url 'logout' %}">Log Out</a><br>
+    {% else %}
+        <a href="{% url 'login' %}">Log In</a> / <a href="{% url 'register' %}">Register</a><br>
+    {% endif %}
+    Please, do not register if you are a robot.
+
+{% endblock %}
