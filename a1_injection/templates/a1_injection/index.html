@@ -10,7 +10,7 @@
 		<a href="{% url 'profile' %}?username={{ request.user.login }}">Profile</a><br>
 		<a href="{% url 'logout' %}">Log Out</a><br>
 	{% else %}
-		<a href="{% url 'login' %}">Log In</a> / <a href="{% url 'register' %}">Register</a>
+		<a href="{% url 'login' %}">Log In</a> / <a href="{% url 'register' %}">Register</a><br>
 	{% endif %}
 	List of users:
 	<ul>
