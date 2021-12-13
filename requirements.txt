@@ -3,5 +3,5 @@ channels-redis==2.4.0
 Django==2.2.1
 django-hosts==3.0
 selenium==3.141.0
-lxml==4.3.3
+lxml==4.6.5
 whitenoise==4.1.2
